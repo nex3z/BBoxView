@@ -1,0 +1,3 @@
+include ':bboxview'
+include ':app'
+rootProject.name = "BBoxView"
