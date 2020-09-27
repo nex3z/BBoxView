@@ -10,12 +10,12 @@ class MainActivity : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
-        init()
+        initView()
     }
 
-    private fun init() {
-        btn_overlay.setOnClickListener {
-            Intent(this, BBoxOverlayActivity::class.java).apply(this::startActivity)
+    private fun initView() {
+        btn_bbox_container.setOnClickListener {
+            Intent(this, BBoxContainerActivity::class.java).apply(this::startActivity)
         }
     }
 }

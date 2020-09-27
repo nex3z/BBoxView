@@ -7,9 +7,9 @@
     tools:context=".MainActivity">
 
     <Button
-        android:id="@+id/btn_overlay"
+        android:id="@+id/btn_bbox_container"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:text="Overlay"/>
+        android:text="BBoxContainer"/>
 
 </LinearLayout>
