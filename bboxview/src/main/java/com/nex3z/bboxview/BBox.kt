@@ -2,19 +2,20 @@ package com.nex3z.bboxview
 
 import android.graphics.PointF
 import android.graphics.RectF
-import kotlin.math.max
-import kotlin.math.min
 
 data class BBox(
-    val from: PointF,
-    var to: PointF = from,
-    var label: String? = null
+    val label: String? = null,
+    private val location: RectF
 ) {
 
-    val rect: RectF
-        get() = RectF(min(from.x, to.x), min(from.y, to.y), max(from.x, to.x), max(from.y, to.y))
+    val width: Float = location.width()
+    val height: Float = location.height()
+    val left: Float = location.left
+    val top: Float = location.top
+    val right: Float = location.right
+    val bottom: Float = location.bottom
 
     val center: PointF
-        get() = PointF((from.x + to.x) / 2, (from.y + to.y) / 2)
+        get() = PointF((location.left + location.right) / 2, (location.top + location.bottom) / 2)
 
 }

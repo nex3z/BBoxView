@@ -5,6 +5,7 @@ import android.graphics.*
 import android.util.AttributeSet
 import android.util.Log
 import android.widget.FrameLayout
+import androidx.core.view.children
 
 
 class BBoxContainer(
@@ -41,13 +42,12 @@ class BBoxContainer(
         mask.eraseColor(Color.TRANSPARENT)
         maskCanvas.drawRect(0f, 0f, width.toFloat(), height.toFloat(), maskPen)
         var empty = true
-        for (i in 0 until childCount) {
-            val child = getChildAt(i)
-            if (child is BBoxView) {
-                maskCanvas.drawRect(child.x, child.y, child.x + child.width, child.y + child.height, cropPen)
+        children
+            .filter {it is BBoxView}
+            .forEach {
+                maskCanvas.drawRect(it.x, it.y, it.x + it.width, it.y + it.height, cropPen)
                 empty = false
             }
-        }
         if (!empty) {
             canvas?.drawBitmap(mask, 0f, 0f, null)
         }
@@ -55,12 +55,10 @@ class BBoxContainer(
 
     fun addBox(box: BBox) {
         Log.v(LOG_TAG, "addBox(): box = $box")
-        val bboxView = BBoxView(context).apply {
-            this.box = box
-        }
-        val params = LayoutParams(box.rect.width().toInt(), box.rect.height().toInt()).apply {
-            leftMargin = box.rect.left.toInt()
-            topMargin = box.rect.top.toInt()
+        val bboxView = BBoxView(context).apply { this.box = box }
+        val params = LayoutParams(box.width.toInt(), box.height.toInt()).apply {
+            leftMargin = box.left.toInt()
+            topMargin = box.top.toInt()
         }
         addView(bboxView, params)
     }
