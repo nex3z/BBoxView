@@ -1,11 +1,10 @@
 package com.nex3z.bboxview.sample
 
-import android.graphics.PointF
-import androidx.appcompat.app.AppCompatActivity
+import android.graphics.RectF
 import android.os.Bundle
+import androidx.appcompat.app.AppCompatActivity
 import com.nex3z.bboxview.BBox
 import kotlinx.android.synthetic.main.activity_bbox_container.*
-
 import kotlin.random.Random
 
 
@@ -20,18 +19,9 @@ class BBoxContainerActivity : AppCompatActivity() {
 
     private fun initView() {
         btn_add.setOnClickListener {
-            val from = PointF(
-                Random.nextInt(0, bbc_container.width / 2).toFloat(),
-                Random.nextInt(0, bbc_container.height / 2).toFloat()
-            )
-            val to = PointF(
-                from.x + Random.nextInt(bbc_container.width / 4, bbc_container.width / 2),
-                from.y + Random.nextInt(bbc_container.height / 4, bbc_container.height / 2)
-            )
             val box = BBox(
-                from = from,
-                to = to,
-                label = "Label ${count++}"
+                label = "Label ${count++}",
+                location = generateRandomLocation()
             )
             bbc_container.addBox(box)
         }
@@ -40,5 +30,15 @@ class BBoxContainerActivity : AppCompatActivity() {
             bbc_container.clear()
             count = 0
         }
+    }
+
+    private fun generateRandomLocation(): RectF {
+        val maxWidth = bbc_container.width
+        val maxHeight = bbc_container.height
+        val left =  Random.nextInt(0, maxWidth / 2).toFloat()
+        val top =  Random.nextInt(0, maxHeight / 2).toFloat()
+        val right = left + Random.nextInt(maxWidth / 4, maxWidth / 2)
+        val bottom = top + Random.nextInt(maxHeight / 4, maxHeight / 2)
+        return RectF(left, top, right, bottom)
     }
 }
