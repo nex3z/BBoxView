@@ -13,7 +13,16 @@ class BBoxView(
 
     var box: BBox? = null
         set(value) {
-            tv_vb_label.text = value?.label
+            if (value != null) {
+                tv_vb_label.text = value.label
+                layoutParams = LayoutParams(value.width.toInt(), value.height.toInt()).apply {
+                    leftMargin = value.left.toInt()
+                    topMargin = value.top.toInt()
+                }
+            } else {
+                tv_vb_label.text = null
+                layoutParams = null
+            }
             field = value
         }
 

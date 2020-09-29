@@ -8,7 +8,7 @@ import android.widget.FrameLayout
 import androidx.core.view.children
 
 
-class BBoxContainer(
+class BBoxContainerView(
     context: Context,
     attrs: AttributeSet? = null
 ): FrameLayout(context, attrs) {
@@ -56,11 +56,7 @@ class BBoxContainer(
     fun addBox(box: BBox) {
         Log.v(LOG_TAG, "addBox(): box = $box")
         val bboxView = BBoxView(context).apply { this.box = box }
-        val params = LayoutParams(box.width.toInt(), box.height.toInt()).apply {
-            leftMargin = box.left.toInt()
-            topMargin = box.top.toInt()
-        }
-        addView(bboxView, params)
+        addView(bboxView)
     }
 
     fun clear() {
@@ -68,6 +64,6 @@ class BBoxContainer(
     }
 
     companion object {
-        private val LOG_TAG = BBoxContainer::class.java.simpleName
+        private val LOG_TAG = BBoxContainerView::class.java.simpleName
     }
 }
