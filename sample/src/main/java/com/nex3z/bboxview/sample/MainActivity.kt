@@ -17,5 +17,8 @@ class MainActivity : AppCompatActivity() {
         btn_bbox_container.setOnClickListener {
             Intent(this, BBoxContainerActivity::class.java).apply(this::startActivity)
         }
+        btn_bbox_annotation.setOnClickListener {
+            Intent(this, BBoxAnnotationActivity::class.java).apply(this::startActivity)
+        }
     }
 }

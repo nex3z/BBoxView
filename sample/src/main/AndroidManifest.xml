@@ -16,7 +16,8 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-        <activity android:name=".BBoxContainerActivity"/>
+        <activity android:name=".BBoxContainerActivity" />
+        <activity android:name=".BBoxAnnotationActivity"/>
     </application>
 
 </manifest>

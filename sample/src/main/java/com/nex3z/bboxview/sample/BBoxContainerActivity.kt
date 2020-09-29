@@ -23,18 +23,18 @@ class BBoxContainerActivity : AppCompatActivity() {
                 label = "Label ${count++}",
                 location = generateRandomLocation()
             )
-            bbc_container.addBox(box)
+            bbcv_container.addBox(box)
         }
 
         btn_clear.setOnClickListener {
-            bbc_container.clear()
+            bbcv_container.clear()
             count = 0
         }
     }
 
     private fun generateRandomLocation(): RectF {
-        val maxWidth = bbc_container.width
-        val maxHeight = bbc_container.height
+        val maxWidth = bbcv_container.width
+        val maxHeight = bbcv_container.height
         val left =  Random.nextInt(0, maxWidth / 2).toFloat()
         val top =  Random.nextInt(0, maxHeight / 2).toFloat()
         val right = left + Random.nextInt(maxWidth / 4, maxWidth / 2)

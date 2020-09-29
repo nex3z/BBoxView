@@ -6,8 +6,8 @@
     android:orientation="vertical"
     tools:context=".BBoxContainerActivity">
 
-    <com.nex3z.bboxview.BBoxContainer
-        android:id="@+id/bbc_container"
+    <com.nex3z.bboxview.BBoxContainerView
+        android:id="@+id/bbcv_container"
         android:layout_width="match_parent"
         android:layout_height="0dp"
         android:layout_weight="1"/>

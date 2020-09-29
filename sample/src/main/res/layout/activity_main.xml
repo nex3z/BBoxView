@@ -10,6 +10,12 @@
         android:id="@+id/btn_bbox_container"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:text="BBoxContainer"/>
+        android:text="BBoxContainerView"/>
+
+    <Button
+        android:id="@+id/btn_bbox_annotation"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="BBoxAnnotationView"/>
 
 </LinearLayout>
