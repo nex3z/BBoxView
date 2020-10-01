@@ -12,6 +12,7 @@ class BBoxAnnotationView(
     attrs: AttributeSet? = null
 ): FrameLayout(context, attrs) {
 
+    var labels: Array<String> = emptyArray()
     private var current: BBoxView? = null
 
     init {
@@ -26,6 +27,8 @@ class BBoxAnnotationView(
             MotionEvent.ACTION_DOWN -> {
                 current = BBoxView(context).apply {
                     box = BBox(location = RectF(event.x, event.y, event.x, event.y))
+                    labelMode = true
+                    labels = this@BBoxAnnotationView.labels
                 }
                 addView(current)
             }

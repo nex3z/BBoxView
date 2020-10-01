@@ -1,5 +1,6 @@
 package com.nex3z.bboxview
 
+import android.app.AlertDialog
 import android.content.Context
 import android.util.AttributeSet
 import android.view.LayoutInflater
@@ -11,6 +12,8 @@ class BBoxView(
     attrs: AttributeSet? = null
 ): FrameLayout(context, attrs) {
 
+    var labelMode: Boolean = false
+    var labels: Array<String> = emptyArray()
     var box: BBox? = null
         set(value) {
             if (value != null) {
@@ -29,5 +32,15 @@ class BBoxView(
     init {
         val inflater = context.getSystemService(Context.LAYOUT_INFLATER_SERVICE) as LayoutInflater
         inflater.inflate(R.layout.view_bbox, this, true)
+
+        tv_vb_label.setOnClickListener {
+            if (labelMode) {
+                AlertDialog.Builder(context).apply {
+                    setItems(labels) { _, which ->
+                        tv_vb_label.text = labels[which]
+                    }
+                }.create().show()
+            }
+        }
     }
 }
