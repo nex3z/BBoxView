@@ -1,0 +1,7 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string-array name="labels">
+        <item>cat</item>
+        <item>dog</item>
+    </string-array>
+</resources>
