@@ -7,7 +7,6 @@ import com.nex3z.bboxview.BBox
 import kotlinx.android.synthetic.main.activity_bbox_container.*
 import kotlin.random.Random
 
-
 class BBoxContainerActivity : AppCompatActivity() {
     private var count: Int = 0
 

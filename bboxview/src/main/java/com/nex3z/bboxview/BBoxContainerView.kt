@@ -3,7 +3,6 @@ package com.nex3z.bboxview
 import android.content.Context
 import android.graphics.*
 import android.util.AttributeSet
-import android.util.Log
 import android.widget.FrameLayout
 import androidx.core.view.children
 
@@ -54,16 +53,13 @@ class BBoxContainerView(
     }
 
     fun addBox(box: BBox) {
-        Log.v(LOG_TAG, "addBox(): box = $box")
-        val bboxView = BBoxView(context).apply { this.box = box }
-        addView(bboxView)
+        BBoxView(context).apply {
+            this.box = box
+            addView(this)
+        }
     }
 
     fun clear() {
         removeAllViews()
-    }
-
-    companion object {
-        private val LOG_TAG = BBoxContainerView::class.java.simpleName
     }
 }

@@ -3,7 +3,6 @@ package com.nex3z.bboxview
 import android.content.Context
 import android.graphics.RectF
 import android.util.AttributeSet
-import android.util.Log
 import android.view.MotionEvent
 import android.widget.FrameLayout
 
@@ -20,7 +19,6 @@ class BBoxAnnotationView(
     }
 
     override fun onTouchEvent(event: MotionEvent?): Boolean {
-        Log.v("BBoxAnnotationView", "onTouchEvent(): event = $event")
         if (event == null) { return false }
 
         when (event.action) {
