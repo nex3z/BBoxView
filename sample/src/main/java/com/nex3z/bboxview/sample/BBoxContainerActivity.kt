@@ -1,6 +1,6 @@
 package com.nex3z.bboxview.sample
 
-import android.graphics.RectF
+import android.graphics.Rect
 import android.os.Bundle
 import androidx.appcompat.app.AppCompatActivity
 import com.nex3z.bboxview.BBox
@@ -31,13 +31,13 @@ class BBoxContainerActivity : AppCompatActivity() {
         }
     }
 
-    private fun generateRandomLocation(): RectF {
+    private fun generateRandomLocation(): Rect {
         val maxWidth = bbcv_container.width
         val maxHeight = bbcv_container.height
-        val left =  Random.nextInt(0, maxWidth / 2).toFloat()
-        val top =  Random.nextInt(0, maxHeight / 2).toFloat()
+        val left =  Random.nextInt(0, maxWidth / 2)
+        val top =  Random.nextInt(0, maxHeight / 2)
         val right = left + Random.nextInt(maxWidth / 4, maxWidth / 2)
         val bottom = top + Random.nextInt(maxHeight / 4, maxHeight / 2)
-        return RectF(left, top, right, bottom)
+        return Rect(left, top, right, bottom)
     }
 }

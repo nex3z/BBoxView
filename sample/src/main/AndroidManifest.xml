@@ -17,7 +17,7 @@
             </intent-filter>
         </activity>
         <activity android:name=".BBoxContainerActivity" />
-        <activity android:name=".BBoxAnnotationActivity"/>
+        <activity android:name=".BBoxLabelActivity"/>
     </application>
 
 </manifest>
