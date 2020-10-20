@@ -1,21 +1,21 @@
 package com.nex3z.bboxview
 
-import android.graphics.PointF
-import android.graphics.RectF
+import android.graphics.Point
+import android.graphics.Rect
 
 data class BBox(
     val label: String? = null,
-    private val location: RectF
+    private val location: Rect
 ) {
 
-    val width: Float = location.width()
-    val height: Float = location.height()
-    val left: Float = location.left
-    val top: Float = location.top
-    val right: Float = location.right
-    val bottom: Float = location.bottom
+    val width: Int = location.width()
+    val height: Int = location.height()
+    val left: Int = location.left
+    val top: Int = location.top
+    val right: Int = location.right
+    val bottom: Int = location.bottom
 
-    val center: PointF
-        get() = PointF((location.left + location.right) / 2, (location.top + location.bottom) / 2)
+    val center: Point
+        get() = Point((location.left + location.right) / 2, (location.top + location.bottom) / 2)
 
 }

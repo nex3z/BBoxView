@@ -6,7 +6,6 @@ import android.util.AttributeSet
 import android.widget.FrameLayout
 import androidx.core.view.children
 
-
 class BBoxContainerView(
     context: Context,
     attrs: AttributeSet? = null
@@ -52,10 +51,15 @@ class BBoxContainerView(
         }
     }
 
-    fun addBox(box: BBox) {
-        BBoxView(context).apply {
-            this.box = box
-            addView(this)
+    fun addBox(vararg boxes: BBox) {
+        var bboxView: BBoxView
+        for (box in boxes) {
+            bboxView = BBoxView(context)
+            val params = LayoutParams(box.width, box.height).apply {
+                leftMargin = box.left
+                topMargin = box.top
+            }
+            addView(bboxView, params)
         }
     }
 
