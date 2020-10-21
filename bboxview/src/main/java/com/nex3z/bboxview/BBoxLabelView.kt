@@ -131,12 +131,10 @@ class BBoxLabelView(
                 val params = it.layoutParams as LayoutParams
                 BBox(
                     label = it.label,
-                    location = Rect(
-                        params.leftMargin,
-                        params.topMargin,
-                        params.leftMargin + params.width,
-                        params.topMargin + params.height
-                    )
+                    xmin = params.leftMargin.toFloat() / width,
+                    ymin = params.topMargin.toFloat() / height,
+                    xmax = (params.leftMargin + params.width).toFloat() / width,
+                    ymax = (params.topMargin + params.height).toFloat() / height
                 )
             }
             .toList()

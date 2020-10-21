@@ -55,10 +55,9 @@ class BBoxContainerView(
         var bboxView: BBoxView
         for (box in boxes) {
             bboxView = BBoxView(context)
-            val params = LayoutParams(box.width, box.height).apply {
-                leftMargin = box.left
-                topMargin = box.top
-            }
+            val params = LayoutParams((box.width * width).toInt(), (box.height * height).toInt())
+            params.leftMargin =  (box.xmin * width).toInt()
+            params.topMargin = (box.ymin * height).toInt()
             addView(bboxView, params)
         }
     }
