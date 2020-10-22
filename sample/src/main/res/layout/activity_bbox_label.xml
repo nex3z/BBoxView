@@ -31,7 +31,7 @@
 
     </LinearLayout>
 
-    <com.nex3z.bboxview.BBoxLabelView
+    <com.nex3z.bboxview.label.LabelBoxContainer
         android:id="@+id/bbav_abl_label"
         android:layout_width="0dp"
         android:layout_height="0dp"
