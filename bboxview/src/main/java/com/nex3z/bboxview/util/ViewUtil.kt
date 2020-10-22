@@ -1,4 +1,4 @@
-package com.nex3z.bboxview
+package com.nex3z.bboxview.util
 
 import android.content.Context
 import android.util.TypedValue

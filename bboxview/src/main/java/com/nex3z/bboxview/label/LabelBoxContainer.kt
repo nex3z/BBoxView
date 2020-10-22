@@ -1,22 +1,24 @@
-package com.nex3z.bboxview
+package com.nex3z.bboxview.label
 
 import android.content.Context
 import android.graphics.Rect
 import android.util.AttributeSet
 import android.view.MotionEvent
 import android.widget.FrameLayout
+import com.nex3z.bboxview.BBox
+import com.nex3z.bboxview.util.dp2pxInt
 import kotlin.math.max
 import kotlin.math.min
 
-class BBoxLabelView(
+class LabelBoxContainer(
     context: Context,
     attrs: AttributeSet? = null
 ): FrameLayout(context, attrs) {
 
     private var lastX: Int = 0
     private var lastY: Int = 0
-    private var resizeView: BBoxView? = null
-    private var resizeAnchor: BBoxView.Anchor? = null
+    private var resizeView: LabelBoxView? = null
+    private var resizeAnchor: LabelBoxView.Anchor? = null
     private val boxMinSize: Int = context.dp2pxInt(128)
     private val defaultPosition: Rect = Rect(0, 0, context.dp2pxInt(256), context.dp2pxInt(256))
 
@@ -47,7 +49,7 @@ class BBoxLabelView(
                 resizeView?.let {
                     val params = it.layoutParams as LayoutParams
                     val layoutParams = when (resizeAnchor) {
-                        BBoxView.Anchor.TOP_LEFT -> {
+                        LabelBoxView.Anchor.TOP_LEFT -> {
                             dx = max(min(dx, params.width - boxMinSize), -params.leftMargin)
                             dy = max(min(dy, params.height - boxMinSize), -params.topMargin)
                             LayoutParams(params).apply {
@@ -57,7 +59,7 @@ class BBoxLabelView(
                                 this.height -= dy
                             }
                         }
-                        BBoxView.Anchor.TOP_RIGHT -> {
+                        LabelBoxView.Anchor.TOP_RIGHT -> {
                             dx = min(max(dx, boxMinSize - params.width), width - params.leftMargin - params.width)
                             dy = max(min(dy, params.height - boxMinSize), -params.topMargin)
                             LayoutParams(params).apply {
@@ -66,7 +68,7 @@ class BBoxLabelView(
                                 this.height -= dy
                             }
                         }
-                        BBoxView.Anchor.BOTTOM_LEFT -> {
+                        LabelBoxView.Anchor.BOTTOM_LEFT -> {
                             dx = max(min(dx, params.width - boxMinSize), -params.leftMargin)
                             dy = min(max(dy, boxMinSize - params.height), height - params.topMargin - params.height)
                             LayoutParams(params).apply {
@@ -75,7 +77,7 @@ class BBoxLabelView(
                                 this.height += dy
                             }
                         }
-                        BBoxView.Anchor.BOTTOM_RIGHT -> {
+                        LabelBoxView.Anchor.BOTTOM_RIGHT -> {
                             dx = min(max(dx, boxMinSize - params.width), width - params.leftMargin - params.width)
                             dy = min(max(dy, boxMinSize - params.height), height - params.topMargin - params.height)
                             LayoutParams(params).apply {
@@ -83,7 +85,7 @@ class BBoxLabelView(
                                 this.height += dy
                             }
                         }
-                        BBoxView.Anchor.CENTER -> {
+                        LabelBoxView.Anchor.CENTER -> {
                             dx = min(max(dx, -params.leftMargin), width - params.leftMargin - params.width)
                             dy = min(max(dy, -params.topMargin), height - params.topMargin - params.height)
                             LayoutParams(params).apply {
@@ -115,7 +117,7 @@ class BBoxLabelView(
     }
 
     fun addBox(label: String, position: Rect = defaultPosition) {
-        val box = BBoxView(context).apply {
+        val box = LabelBoxView(context).apply {
             this.layoutParams = LayoutParams(position.width(), position.height()).apply {
                 leftMargin = position.left
                 rightMargin = position.right
@@ -140,9 +142,9 @@ class BBoxLabelView(
             .toList()
     }
 
-    private fun getChildren(): List<BBoxView> = (0.until(childCount))
+    private fun getChildren(): List<LabelBoxView> = (0.until(childCount))
         .map { getChildAt(it) }
-        .filterIsInstance<BBoxView>()
+        .filterIsInstance<LabelBoxView>()
         .toList()
 
     fun clear() {
