@@ -17,7 +17,12 @@ class LabelBoxContainer(
 
     private var lastX: Int = 0
     private var lastY: Int = 0
-    private var resizeView: LabelBoxView? = null
+    private var selected: LabelBoxView? = null
+        set(value) {
+            field?.isSelected = false
+            value?.isSelected = true
+            field = value
+        }
     private var resizeAnchor: LabelBoxView.Anchor? = null
     private val boxMinSize: Int = context.dp2pxInt(128)
     private val defaultPosition: Rect = Rect(0, 0, context.dp2pxInt(256), context.dp2pxInt(256))
@@ -28,25 +33,36 @@ class LabelBoxContainer(
         var processed = false
         when(event.action) {
             MotionEvent.ACTION_DOWN -> {
-                resizeView = null
-                resizeAnchor = null
-                for (view in getChildren()) {
-                    val params = view.layoutParams as LayoutParams
-                    val anchor = view.getSelectedAnchor(
+                selected?.let {
+                    val params = it.layoutParams as LayoutParams
+                    val anchor = it.getSelectedAnchor(
                         event.x.toInt() - params.leftMargin,
                         event.y.toInt() - params.topMargin
                     )
                     if (anchor != null) {
-                        resizeView = view
                         resizeAnchor = anchor
                         processed = true
+                    }
+                }
+                if (!processed) {
+                    for (view in getChildren()) {
+                        val params = view.layoutParams as LayoutParams
+                        val clicked = view.contains(
+                            event.x.toInt(),
+                            event.y.toInt()
+                        )
+                        if (clicked) {
+                            removeView(view)
+                            addView(view)
+                            selected = view
+                        }
                     }
                 }
             }
             MotionEvent.ACTION_MOVE -> {
                 var dx = event.x.toInt() - lastX
                 var dy = event.y.toInt() - lastY
-                resizeView?.let {
+                selected?.let {
                     val params = it.layoutParams as LayoutParams
                     val layoutParams = when (resizeAnchor) {
                         LabelBoxView.Anchor.TOP_LEFT -> {
@@ -102,11 +118,9 @@ class LabelBoxContainer(
                 }
             }
             MotionEvent.ACTION_UP -> {
-                resizeView = null
                 resizeAnchor = null
             }
             MotionEvent.ACTION_CANCEL -> {
-                resizeView = null
                 resizeAnchor = null
             }
         }
@@ -124,6 +138,7 @@ class LabelBoxContainer(
             }
             this.label = label
         }
+        selected = box
         addView(box)
     }
 

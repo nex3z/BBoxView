@@ -1,0 +1,7 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <color name="bbox_border_selected">#AA4CAF50</color>
+    <color name="bbox_border_unselected">#AAAAAAAA</color>
+    <color name="bbox_label_selected">#AA4CAF50</color>
+    <color name="bbox_label_unselected">#AAAAAAAA</color>
+</resources>

@@ -28,23 +28,23 @@ class LabelBoxView(
 
     fun getSelectedAnchor(x: Int, y: Int): Anchor? {
         return when {
-            iv_vlb_anchor_top_left.contains(x, y) -> {
+            contains(iv_vlb_anchor_top_left, x, y) -> {
                 Log.v(TAG, "getSelectedAnchor(): selected iv_vlb_anchor_top_left")
                 Anchor.TOP_LEFT
             }
-            iv_vlb_anchor_top_right.contains(x, y) -> {
+            contains(iv_vlb_anchor_top_right, x, y) -> {
                 Log.v(TAG, "getSelectedAnchor(): selected iv_vlb_anchor_top_right")
                 Anchor.TOP_RIGHT
             }
-            iv_vlb_anchor_bottom_left.contains(x, y) -> {
+            contains(iv_vlb_anchor_bottom_left, x, y) -> {
                 Log.v(TAG, "getSelectedAnchor(): selected iv_vlb_anchor_bottom_left")
                 Anchor.BOTTOM_LEFT
             }
-            iv_vlb_anchor_bottom_right.contains(x, y) -> {
+            contains(iv_vlb_anchor_bottom_right, x, y) -> {
                 Log.v(TAG, "getSelectedAnchor(): selected iv_vlb_anchor_bottom_right")
                 Anchor.BOTTOM_RIGHT
             }
-            iv_vlb_anchor_center.contains(x, y) -> {
+            contains(iv_vlb_anchor_center, x, y) -> {
                 Log.v(TAG, "getSelectedAnchor(): selected iv_vlb_anchor_bottom_right")
                 Anchor.CENTER
             }
@@ -54,14 +54,18 @@ class LabelBoxView(
             }
         }
     }
+
+    fun contains(x: Int, y: Int): Boolean {
+        return contains(this, x, y)
+    }
     
     enum class Anchor {
         TOP_LEFT, TOP_RIGHT, BOTTOM_LEFT, BOTTOM_RIGHT, CENTER
     }
 
-    private fun View.contains(x: Int, y: Int): Boolean {
+    private fun contains(view: View, x: Int, y: Int): Boolean {
         val rect = Rect()
-        getHitRect(rect)
+        view.getHitRect(rect)
         return rect.contains(x, y)
     }
 
