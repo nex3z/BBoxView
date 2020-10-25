@@ -44,7 +44,7 @@ class LabelBoxView(
                 Log.v(TAG, "getSelectedAnchor(): selected iv_vlb_anchor_bottom_right")
                 Anchor.BOTTOM_RIGHT
             }
-            contains(iv_vlb_anchor_center, x, y) -> {
+            contains(v_vlb_anchor_center, x, y) -> {
                 Log.v(TAG, "getSelectedAnchor(): selected iv_vlb_anchor_bottom_right")
                 Anchor.CENTER
             }
